@@ -1,21 +1,22 @@
 import { View, Text, StyleSheet } from "react-native";
 import { balsamiqSans, Theme } from "../config";
 
-export function Date({ date }) {
-  const months = [
-    "JAN",
-    "FEB",
-    "MAR",
-    "APR",
-    "MAY",
-    "JUN",
-    "JUL",
-    "AUG",
-    "SEP",
-    "OCT",
-    "NOV",
-    "DEC",
-  ];
+const months = [
+  "JAN",
+  "FEB",
+  "MAR",
+  "APR",
+  "MAY",
+  "JUN",
+  "JUL",
+  "AUG",
+  "SEP",
+  "OCT",
+  "NOV",
+  "DEC",
+];
+
+export function DateStamp({ date }) {
   return (
     <View style={styles.container}>
       <View style={styles.date}>

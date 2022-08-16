@@ -3,34 +3,52 @@ import { inter, Theme } from "../config";
 import { SharedElement } from "react-navigation-shared-element";
 import { useNavigation } from "@react-navigation/native";
 
-export function Card({ title, description, image, date, id }) {
-  const formatAMPM = (date) => {
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    hours %= 12;
-    hours = hours || 12;
-    return `${hours}:${minutes < 10 ? `0${minutes}` : minutes} ${
-      hours >= 12 ? "PM" : "AM"
-    }`;
-  };
+const formatAMPM = (date) => {
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  hours %= 12;
+  hours = hours || 12;
+  return `${hours}:${minutes < 10 ? `0${minutes}` : minutes} ${
+    hours >= 12 ? "PM" : "AM"
+  }`;
+};
+
+export function Card({ title, notes, image, date, id }) {
   const nav = useNavigation();
   return (
     <TouchableOpacity
-      onPress={() => nav.push("Detail", { image, title, description, id })}
+      onPress={() =>
+        nav.navigate("Memories.Detail", {
+          image,
+          title,
+          notes,
+          id,
+          date: date.toISOString(),
+        })
+      }
     >
       <View style={styles.card}>
-        {image ? (
-          <SharedElement id={id} style={styles.cardImage}>
+        {image && image.uri.length != 0 ? (
+          <SharedElement id={`${id}.image`} style={styles.cardImage}>
             <Image source={image} style={styles.cardImage} />
           </SharedElement>
         ) : null}
-        <View style={styles.cardContent}>
-          <Text style={[styles.cardTitle, inter.h3]}>{title}</Text>
-          <Text style={[styles.cardTime, inter.label]}>{formatAMPM(date)}</Text>
-          <Text style={[styles.cardDescription, inter.bodyBase]}>
-            {description}
-          </Text>
-        </View>
+        <SharedElement
+          id={`${id}.content`}
+          style={{ width: "100%", height: "100%" }}
+        >
+          <View style={styles.cardContent}>
+            <Text style={[styles.cardTitle, inter.h3]}>{title}</Text>
+            <Text style={[styles.cardTime, inter.label]}>
+              {formatAMPM(date)}
+            </Text>
+            <Text style={[styles.cardDescription, inter.bodyBase]}>
+              {notes.length > 70 && image && image.uri.length != 0
+                ? notes.substring(0, 70) + "..."
+                : notes.substring(0, 100)}
+            </Text>
+          </View>
+        </SharedElement>
       </View>
     </TouchableOpacity>
   );
@@ -46,13 +64,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     height: "100%",
     borderRadius: 16,
+    overflow: "hidden",
   },
   cardImage: {
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
-    height: 200,
-    overflow: "hidden",
+    aspectRatio: 3 / 2,
     borderRadius: 16,
   },
   cardContent: {
@@ -60,7 +78,6 @@ const styles = StyleSheet.create({
     height: "100%",
     marginTop: 10,
     color: Theme.text,
-    paddingBottom: 10,
   },
   cardTime: {
     marginBottom: 10,

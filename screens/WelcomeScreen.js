@@ -7,11 +7,15 @@ import Constants from "expo-constants";
 import * as Auth from "firebase/auth";
 import { auth } from "../config/firebase";
 import { Theme, balsamiqSans, inter } from "../config";
+import { setBackgroundColorAsync } from "expo-navigation-bar";
 
 GoogleSignin.configure({
   webClientId: Constants.manifest.extra.webClientId,
   client_type: 3,
-  scopes: ["https://www.googleapis.com/auth/tasks"],
+  scopes: [
+    "https://www.googleapis.com/auth/tasks",
+    "https://www.googleapis.com/auth/drive.file",
+  ],
 });
 
 async function onGoogleButtonPress() {
@@ -21,6 +25,8 @@ async function onGoogleButtonPress() {
 }
 
 export function WelcomeScreen({ navigation }) {
+  setBackgroundColorAsync(Theme.primary);
+
   return (
     <View style={styles.container}>
       <View style={styles.up}>

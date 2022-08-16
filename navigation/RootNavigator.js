@@ -11,7 +11,7 @@ import {
   BalsamiqSans_400Regular,
   BalsamiqSans_700Bold,
 } from "@expo-google-fonts/balsamiq-sans";
-import { WelcomeScreen } from "../screens";
+import { WelcomeScreen } from "../screens/WelcomeScreen";
 
 export const RootNavigator = () => {
   const { user, setUser } = useContext(AuthenticatedUserContext);

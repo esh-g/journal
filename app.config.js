@@ -8,10 +8,6 @@ export default {
     version: "1.0",
     orientation: "portrait",
     icon: "./assets/flame.png",
-    splash: {
-      image: "./assets/Group.png",
-      backgroundColor: "#CFE3FD",
-    },
     updates: {
       fallbackToCacheTimeout: 0,
     },
@@ -33,5 +29,18 @@ export default {
       package: "com.journalapp",
       googleServicesFile: "./google-services.json",
     },
+    androidStatusBar: {
+      barStyle: "dark-content",
+      backgroundColor: "#0A48A5",
+    },
+    plugins: [
+      [
+        "expo-image-picker",
+        {
+          photosPermission:
+            "This app requires access to add photos to your memories.",
+        },
+      ],
+    ],
   },
 };

@@ -1,14 +1,22 @@
 import Dash from "react-native-dash";
 import { Card } from "./Card";
 import { View, StyleSheet } from "react-native";
-import { Date } from "./Date";
-import { useRef, useEffect } from "react";
+import { DateStamp } from "./Date";
+import Animated, { SlideInLeft, SlideOutRight } from "react-native-reanimated";
 
-export function Post({ title, description, date, image, id }) {
+export function Post({ title, notes, date, image, id }) {
+  date = new Date(date);
   return (
-    <View style={[styles.post, image ? { height: 420 } : { height: 200 }]}>
+    <Animated.View
+      style={[
+        styles.post,
+        image && image.uri ? { height: 420 } : { height: 200 },
+      ]}
+      entering={SlideInLeft}
+      exiting={SlideOutRight}
+    >
       <View style={styles.date}>
-        <Date date={date} />
+        <DateStamp date={date} />
         <Dash
           style={{
             marginTop: "10%",
@@ -23,15 +31,9 @@ export function Post({ title, description, date, image, id }) {
         />
       </View>
       <View style={styles.postCard}>
-        <Card
-          title={title}
-          description={description}
-          image={image}
-          date={date}
-          id={id}
-        />
+        <Card title={title} notes={notes} image={image} date={date} id={id} />
       </View>
-    </View>
+    </Animated.View>
   );
 }
 

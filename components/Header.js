@@ -2,9 +2,11 @@ import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import { auth, balsamiqSans } from "../config";
 import { ProfileModal } from "./ProfileModal";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 export function Header({ children }) {
   const [visible, setVisible] = useState(false);
+  const navigation = useNavigation();
   const NameBar = () => {
     return !children ? (
       <>
@@ -27,6 +29,7 @@ export function Header({ children }) {
 
   const handleProfile = () => {
     setVisible(true);
+    navigation.navigate("Profile");
   };
 
   return (
@@ -34,7 +37,7 @@ export function Header({ children }) {
       <View style={styles.headerContent}>
         <NameBar />
       </View>
-      <ProfileModal visible={visible} onClose={() => setVisible(false)} />
+      {/* <ProfileModal visible={visible} onClose={() => setVisible(false)} /> */}
       <Pressable onPress={handleProfile}>
         <View style={styles.profile}>
           <Image

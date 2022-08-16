@@ -1,13 +1,14 @@
 import React from "react";
-import { ActivityIndicator, StyleSheet } from "react-native";
-
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { Theme } from "../config";
-import { View } from "./View";
 
-export const LoadingIndicator = () => {
+export const LoadingIndicator = ({ size, color }) => {
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" color={Theme.accent} />
+      <ActivityIndicator
+        size={size ? size : "large"}
+        color={color ? color : Theme.accent}
+      />
     </View>
   );
 };

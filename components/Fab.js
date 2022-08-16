@@ -1,19 +1,36 @@
 import { FontAwesome5 } from "@expo/vector-icons";
-import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  StyleSheet,
+  KeyboardAvoidingView,
+} from "react-native";
 import { balsamiqSans, Theme } from "../config";
+import { LoadingIndicator } from "./LoadingIndicator";
 
-export function Fab({ icon, children, onPress }) {
+export function Fab({ icon, children, onPress, disabled }) {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.root}>
-      <View style={styles.container}>
-        <View style={styles.icon}>
-          <FontAwesome5 name={icon} size={20} color={"white"} />
+    <KeyboardAvoidingView style={styles.root} behavior="padding">
+      <TouchableOpacity onPress={onPress} disabled={disabled}>
+        <View style={styles.container}>
+          <View style={styles.icon}>
+            {disabled ? (
+              <LoadingIndicator size="small" color={"white"} />
+            ) : (
+              <FontAwesome5 name={icon} size={20} color={"white"} />
+            )}
+          </View>
+          {children ? (
+            <View style={styles.children}>
+              <Text style={[balsamiqSans[18], { color: "white" }]}>
+                {children}
+              </Text>
+            </View>
+          ) : null}
         </View>
-        <View style={styles.children}>
-          <Text style={[balsamiqSans[18], { color: "white" }]}>{children}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -22,8 +39,8 @@ const styles = StyleSheet.create({
     zIndex: 100,
     position: "absolute",
     borderRadius: 12,
-    bottom: 15,
-    right: 18,
+    bottom: 0,
+    right: 15,
   },
   container: {
     borderRadius: 12,
@@ -33,15 +50,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     elevation: 3,
+    justifyContent: "center",
+    marginBottom: 10,
   },
   icon: {
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 10,
   },
   children: {
     alignItems: "center",
     justifyContent: "center",
     color: "white",
+    marginLeft: 10,
   },
 });
