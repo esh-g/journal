@@ -48,10 +48,10 @@ export function ProfileScreen({ navigation }) {
             style={styles.image}
           />
           <View>
-            <Text style={[inter.h4, { color: "white" }]}>
+            <Text style={[inter.h4, { color: "white" }]} adjustsFontSizeToFit={true}>
               {auth.currentUser.displayName}
             </Text>
-            <Text style={[inter.bodyBase, { color: "white" }]}>
+            <Text style={[inter.bodyBase, { color: "white" }]} adjustsFontSizeToFit={true}>
               {auth.currentUser.email}
             </Text>
           </View>
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Theme.primary,
-    padding: 24,
+    padding: "4%",
   },
   profile: {
     backgroundColor: Theme.accent,
@@ -139,8 +139,8 @@ const styles = StyleSheet.create({
   },
   content: {
     backgroundColor: Theme.secondary,
-    marginTop: "10%",
-    padding: 24,
+    marginTop: "12.5%",
+    padding: "5%",
     borderRadius: 24,
     paddingBottom: 36,
   },

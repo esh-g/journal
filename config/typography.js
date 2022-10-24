@@ -4,7 +4,7 @@ export const balsamiqSans = StyleSheet.create({
   48: {
     fontFamily: "BalsamiqSans_400Regular",
     fontSize: 48,
-    lineHeight: 58,
+    lineHeight: 50,
   },
   40: {
     fontFamily: "BalsamiqSans_400Regular",
@@ -13,7 +13,7 @@ export const balsamiqSans = StyleSheet.create({
   },
   32: {
     fontSize: 32,
-    lineHeight: 42,
+    lineHeight: 36,
     fontFamily: "BalsamiqSans_400Regular",
   },
   24: {

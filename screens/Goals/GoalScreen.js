@@ -48,7 +48,7 @@ export function GoalScreen({ route, navigation }) {
               style={[
                 balsamiqSans[48],
                 { textAlign: "center", lineHeight: 48 },
-              ]}
+              ]} adjustsFontSizeToFit={true}
             >
               {currentGoal === null ? (
                 <LoadingIndicator />

@@ -1,4 +1,4 @@
-import { View, StyleSheet, ScrollView, Text, FlatList } from "react-native";
+import { View, StyleSheet, ScrollView, Text, SafeAreaView } from "react-native";
 import { Theme } from "../../config";
 import { Post, Header, Fab, LoadingIndicator } from "../../components";
 import { useEffect, useState } from "react";
@@ -30,7 +30,7 @@ export function MemoriesScreen({ navigation }) {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <ScrollView style={styles.body}>
         <Header />
 
@@ -45,7 +45,7 @@ export function MemoriesScreen({ navigation }) {
       <Fab icon="plus" onPress={() => navigation.navigate("Memories.Add")}>
         Memory
       </Fab>
-    </View>
+    </SafeAreaView>
   );
 }
 

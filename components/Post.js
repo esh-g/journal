@@ -3,6 +3,7 @@ import { Card } from "./Card";
 import { View, StyleSheet } from "react-native";
 import { DateStamp } from "./Date";
 import Animated, { SlideInLeft, SlideOutRight } from "react-native-reanimated";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export function Post({ title, notes, date, image, id }) {
   date = new Date(date);
@@ -10,7 +11,7 @@ export function Post({ title, notes, date, image, id }) {
     <Animated.View
       style={[
         styles.post,
-        image && image.uri ? { height: 420 } : { height: 200 },
+        image && image.uri ? { height: hp("45%") } : { maxHeight: hp("30%") },
       ]}
       entering={SlideInLeft}
       exiting={SlideOutRight}
@@ -41,16 +42,19 @@ const styles = StyleSheet.create({
   post: {
     flexDirection: "row",
     overflow: "hidden",
-    marginTop: 12,
+    marginTop: 10,
+    justifyContent: "space-evenly",
+    width: "100%"
   },
   date: {
     height: "100%",
     paddingLeft: 10,
     alignItems: "center",
+    width: "15%"
   },
   postCard: {
-    flex: 3.5,
     padding: 15,
-    paddingTop: 25,
+    paddingTop: 24,
+    width: "80%"
   },
 });

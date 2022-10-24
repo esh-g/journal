@@ -3,18 +3,19 @@ import { auth, balsamiqSans } from "../config";
 import { ProfileModal } from "./ProfileModal";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export function Header({ children }) {
   const [visible, setVisible] = useState(false);
   const navigation = useNavigation();
   const NameBar = () => {
     return !children ? (
-      <>
+      <View>
         <Text style={balsamiqSans[48]}>Hello,</Text>
-        <Text style={{ ...balsamiqSans[40], textTransform: "capitalize" }}>
+        <Text style={{ ...balsamiqSans[32], textTransform: "capitalize" }}>
           {auth.currentUser.displayName.split(" ")[0]}
         </Text>
-      </>
+      </View>
     ) : (
       <>
         <Text style={balsamiqSans[32]}>
@@ -54,19 +55,19 @@ export function Header({ children }) {
 
 const styles = StyleSheet.create({
   profileImage: {
-    width: 115,
-    height: 115,
+    width: wp("25%"),
+    height: wp("25%"),
     borderRadius: 100,
   },
   headerContent: {
-    paddingVertical: 16,
+    paddingVertical: hp("1.5%"),
   },
   header: {
     display: "flex",
     flexDirection: "row",
-    padding: 20,
+    paddingTop: 20,
     justifyContent: "space-between",
-    paddingHorizontal: 40,
+    paddingHorizontal: wp("7.5%"),
     alignItems: "center",
     width: "100%",
   },

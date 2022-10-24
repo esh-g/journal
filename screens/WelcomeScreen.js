@@ -20,6 +20,7 @@ GoogleSignin.configure({
 
 async function onGoogleButtonPress() {
   const { idToken } = await GoogleSignin.signIn();
+  console.log(idToken);
   const googleCredential = Auth.GoogleAuthProvider.credential(idToken);
   return Auth.signInWithCredential(auth, googleCredential);
 }
@@ -54,7 +55,7 @@ export function WelcomeScreen({ navigation }) {
             style={{ width: 250, height: 56, marginBottom: 16 }}
             size={GoogleSigninButton.Size.Wide}
             color={GoogleSigninButton.Color.Dark}
-            onPress={() => onGoogleButtonPress().catch((e) => console.log(e))}
+            onPress={() => onGoogleButtonPress().catch((e) => console.log(Object.entries(e)))}
           />
           <Text style={{ ...inter.label, paddingHorizontal: 80 }}>
             Let us link to your google Account to sync all the memories, photos,

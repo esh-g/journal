@@ -79,11 +79,12 @@ export function NavBar({ state, descriptors, navigation }) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "10%",
+    height: "8%",
+    paddingTop: 10,
     backgroundColor: Theme.secondary,
     color: Theme.text,
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-end",
     justifyContent: "space-around",
     elevation: 20,
     bottom: 0,
